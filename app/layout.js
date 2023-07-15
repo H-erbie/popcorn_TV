@@ -1,4 +1,3 @@
-"use client";
 import { AppProvider } from "./components/context/context";
 import Footer from "./components/footer";
 import Header from "./components/header";
