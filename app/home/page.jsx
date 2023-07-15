@@ -18,7 +18,6 @@ const page = () => {
           setAction(res.data.results);
           console.log(res.data.results);
         });
-      // setAction(movies);
     } catch (error) {
       console.log(error);
     }
@@ -27,8 +26,6 @@ const page = () => {
     fetchAction();
   }, []);
 
-  // const {user} = useGlobalContext();
-  // user && console.log(user.displayName.splice(0,1))
   return (
     <ProtectedRoute>
       <section className="mb-12">
