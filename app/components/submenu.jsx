@@ -1,3 +1,4 @@
+'use client'
 import React, { Suspense } from "react";
 import firebase_app from "../components/firebase/config";
 import { getAuth, signOut } from "firebase/auth";
