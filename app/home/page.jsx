@@ -18,6 +18,7 @@ const page = () => {
           setAction(res.data.results);
           console.log(res.data.results);
         });
+      // setAction(movies);
     } catch (error) {
       console.log(error);
     }
