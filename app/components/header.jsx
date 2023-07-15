@@ -1,30 +1,16 @@
 "use client";
 import Link from "next/link";
-import React, { Suspense, useState } from "react";
+import React from "react";
 import { FaSearch } from "react-icons/fa";
 import { useGlobalContext } from "./context/context";
-import { getAuth, signOut } from "firebase/auth";
-import { useRouter } from "next/navigation";
-import firebase_app from "./firebase/config";
+import { HiOutlineBars2 } from "react-icons/hi2";
+import {VscChromeClose} from 'react-icons/vsc'
+import { Button } from '@/components/ui/button'
+
+
 
 const Header = () => {
-  const { user } = useGlobalContext();
-  const auth = getAuth(firebase_app);
-  const [dropdown, setDropdown] = useState(false);
-  const router = useRouter();
-
-  const signnOut = () => {
-    signOut(auth);
-    router.push("/");
-  };
-
-  const showDropdown = (e) => {
-    setDropdown(true);
-  };
-
-  const hideDropdown = () => {
-    setDropdown(false);
-  };
+  const { user, showSide, search, showSearch, hideSide, sidemenu } = useGlobalContext();
 
   return (
     <header className="bg-black z-50 fixed top-0 left-0 w-screen flex items-center justify-between px-6 py-3">
@@ -35,12 +21,12 @@ const Header = () => {
         >
           Popcorn TV+
         </Link>
-      </div>
+      </div>  
 
       <div className="flex gap-5 items-center">
         {user && (
           <>
-            <span className="text-2xl sm:hidden cursor-pointer">
+            <span className={search ? "hidden" : 'search'} onClick={showSearch}>
               <FaSearch />
             </span>
 
@@ -52,45 +38,20 @@ const Header = () => {
               placeholder={`Search`}
             />
 
-            <div
-              className="relative"
-              onMouseOver={showDropdown}
-              onMouseOut={hideDropdown}
-            >
-              <Suspense
-                fallback={
-                  <div className="h-[45px] w-[45px] rounded-[50%] animate-pulse bg-gray-600"></div>
-                }
-              >
-                <img
-                  src={user.photoURL}
-                  alt=""
-                  className="img cursor-pointer"
-                />{" "}
-              </Suspense>
-
-              <div className={dropdown ? "drop scale-100" : "drop"}>
-                <span className="cursor-pointer hover:text-red-300">
-                  Profile
-                </span>
-                <button
-                  className="py-1 px-3 w-max hover:bg-red-500 bg-red-600 no-underline rounded-md capitalize"
-                  onClick={signnOut}
-                >
-                  sign out
-                </button>
+            {sidemenu ? (
+              <VscChromeClose onClick={hideSide} className="text-4xl cursor-pointer"/>
+            ) : (
+              <div className="text-4xl cursor-pointer">
+                <HiOutlineBars2 onClick={showSide}/>
               </div>
-            </div>
+            )}
           </>
         )}
 
         {!user && (
-          <Link
-            href="/log-in"
-            className="py-1 px-3 ml-5 hover:bg-red-500 bg-red-600 no-underline rounded-md capitalize"
-          >
-            sign in
-          </Link>
+          <Button asChild>
+          <Link href="/log-in">Login</Link>
+        </Button>
         )}
       </div>
     </header>
