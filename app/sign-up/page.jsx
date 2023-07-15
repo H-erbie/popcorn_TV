@@ -18,7 +18,7 @@ const Page = () => {
   const [fname, setFname] = useState("");
   const [lname, setLname] = useState("");
   const [profileImg, setProfileImg] = useState(null);
-  
+
   const handleForm = async (event) => {
     event.preventDefault();
     const userName = `${fname} ${lname}`;
@@ -152,7 +152,7 @@ const Page = () => {
         <p className="mx-auto w-max">
           Already have an account?{" "}
           <Button asChild>
-            <Link href="/sign-up">log in</Link>
+            <Link href="/log-in">log in</Link>
           </Button>
         </p>
       </div>

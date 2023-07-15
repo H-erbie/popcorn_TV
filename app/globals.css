@@ -91,7 +91,7 @@
     @apply min-h-screen pt-[58px]
   }
   input[type='text'], input[type='email'],  input[type='password'], input[type='search']{
-    @apply focus:outline-zinc-400 rounded-md  outline-none bg-[#222]
+    @apply focus:outline-zinc-400 w-[271px] rounded-md  outline-none bg-[#222]
   }
   /* input[type='password']{
     @apply outline-red-300
