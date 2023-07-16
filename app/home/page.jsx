@@ -5,19 +5,18 @@ import axios from "axios";
 import Movies from "../components/movies";
 
 const page = () => {
-  const [action, setAction] = useState([]);
+  const [movz, setMovz] = useState([]);
 
 
-  const fetchAction = () => {
+  const fetchAction = async() => {
     try {
-      const res = axios
-        .get(
+      const res = await fetch(
           "https://api.themoviedb.org/3/discover/movie?api_key=e97d84556d5889dd1e20ed5bd787c84a&language=en-US&sort_by=release_date.desc"
         )
-        .then((res) => {
-          setAction(res.data.results);
+          const data = await res.json()
+          const movies =  data.results
+          setMovz(movies);
           console.log(res.data.results);
-        });
       // setAction(movies);
     } catch (error) {
       console.log(error);
@@ -34,14 +33,14 @@ const page = () => {
           <p className="font-bold text-2xl text-center">Want a movie? Search a movie🙄</p>
         </div>
         <article className="article mx-auto gap-12 w-max">
-          {action.map((movie) => {
+          {movz.map((movie) => {
             const { id, title, poster_path } = movie;
             return (
               <div className="" key={id}>
                 <Suspense
                   fallback={
                     <div className="flex flex-col gap-3">
-                      <div className="w-4/5 h-36 rounded-md animate-pulse bg-gray-500 mx-auto"></div>
+                      <div className="w-[200px] h-36 rounded-md animate-pulse bg-gray-500 mx-auto"></div>
                       <div className="rounded-md bg-gray-500 animate-pulse w-32 h-5 mx-auto "></div>
                     </div>
                   }

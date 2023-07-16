@@ -1,7 +1,6 @@
 import React from 'react'
 import emu from '../../public/fallback-img.png'
 import Image from 'next/image'
-import Link from 'next/link'
 import { Card, CardContent, CardFooter } from "@/components/ui/card";
 
 const Movies = async({title, poster, id}) => {

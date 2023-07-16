@@ -1,6 +1,5 @@
 "use client";
 import React, { Suspense, useEffect, useState } from "react";
-import axios from "axios";
 import Hero from "./components/hero";
 import Image from "next/image";
 import emu from "../public/emu.png";
@@ -18,23 +17,27 @@ const Page = () => {
 
   const fetchTvshows = async () => {
     try {
-      const res = await axios.get(
+      const res = await fetch(
         `https://api.themoviedb.org/3/tv/popular?api_key=e97d84556d5889dd1e20ed5bd787c84a`
       );
-      const tvs = res.data.results;
+      const data = await res.json()
+      const tvs = data.results
+      console.log(tvs)
       setTvshows(tvs);
+
     } catch (error) {
       console.log(error);
     }
   };
   const fetchRandomMovies = async () => {
     try {
-      const res = await axios.get(
+      const res = await fetch(
         `https://api.themoviedb.org/3/trending/movie/day?api_key=e97d84556d5889dd1e20ed5bd787c84a`
       );
-      const ranMovies = res.data.results;
+      const data = await res.json();
+      const ranMovies = data.results
       setRandom(ranMovies);
-      setPopular(res.data.results[0]);
+      setPopular(ranMovies[0]);
     } catch (error) {
       console.log(error);
     }
@@ -51,7 +54,13 @@ const Page = () => {
         <div className=" h-max gap-3 flex overflow-scroll no-scrollbar w-full">
           <Suspense
             fallback={
-              <div className="h-screen w-screen animate-pulse bg-gray-500"></div>
+              <>
+              <div className="flex h-screen w-screen">
+              <div className="h-[500px] w-[930px] rounded-xl mx-auto my-auto animate-pulse bg-gray-500"></div>
+
+              </div>
+
+              </>
             }
           >
             <Hero

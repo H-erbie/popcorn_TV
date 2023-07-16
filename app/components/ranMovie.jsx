@@ -1,6 +1,8 @@
 import React from "react";
-import { Card, CardContent, CardFooter } from "@/components/ui/card";
+import { Card, CardContent, } from "@/components/ui/card";
 import Image from "next/image";
+import emu from '../../public/fallback-img.png'
+
 
 const RanMovie = async ({ title, poster_path }) => {
   return (
@@ -11,7 +13,7 @@ const RanMovie = async ({ title, poster_path }) => {
         <Image
           height={200}
           width={200}
-          src={`https://image.tmdb.org/t/p/w500${poster_path}`}
+          src={poster_path === null ? emu :`https://image.tmdb.org/t/p/w500${poster_path}`}
           className="object-cover"
           alt='movie poster'
         />

@@ -1,15 +1,19 @@
 import React from 'react'
+import emu from '../../public/fallback-img.png'
+import Image from 'next/image'
+
 
 const Hero = async({title, poster_path}) => {
   return (
-    <div  className="flex flex-col gap-3 relative">
-    <div className="h-screen w-screen overflow-hidden">
+    <div  className="flex w-screen  h-screen overflow-hidden">
+    <div className="w-[1000px] h-[500px] rounded-xl mx-auto my-auto px-9 relative overflow-hidden">
       {" "}
-      <img src={`https://image.tmdb.org/t/p/w500${poster_path}`}  alt='movie poster'  className="w-full h-auto" />
-    </div>
-    <p className="absolute text-center font-bold flex md:text-4xl sm:text-3xl text-2xl lg:text-5xl top-0 h-screen sm:h-full left-0 w-full backdrop-blur-[1px] backdrop-brightness-[.55] justify-center items-center">
+      <Image src={poster_path === null ? emu :`https://image.tmdb.org/t/p/w500${poster_path}`} width={1300} height={500}  alt='movie poster'  className="rounded-2xl" />
+      <p className="absolute text-center font-bold flex md:text-4xl sm:text-3xl text-2xl lg:text-5xl top-0 h-[500px] sm:h-full left-9 rounded-xl w-[930px] backdrop-blur-[1px] backdrop-brightness-[.55] justify-center items-center">
       {title}🎬
     </p>
+    </div>
+    
   </div>
   
 )
