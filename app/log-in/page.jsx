@@ -14,6 +14,8 @@ const Page = () => {
     e.preventDefault();
 
     const { result, error } = await signIn(email, password);
+    setEmail("")
+    setPassword("")
     if (error) {
       return console.log(error);
     }
@@ -42,6 +44,7 @@ const Page = () => {
                 name="email"
                 id="email"
                 className="rounded-md"
+                value={email}
               />
             </Form.Control>
             <div className="absolute -right-[95%] bottom-4 text-red-500">
@@ -65,6 +68,7 @@ const Page = () => {
                 name="password"
                 id="password"
                 className="rounded-md"
+                value={password}
               />
             </Form.Control>
             <div className="absolute -right-[85%] text-red-500">
