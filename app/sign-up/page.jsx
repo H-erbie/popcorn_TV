@@ -122,8 +122,6 @@ const Page = () => {
               </Form.Message>
             </div>
           </Form.Field>
-          <Form.Field className="relative">
-            <Form.Control asChild>
               <div className="max-w-[300px] gap-16 rounded-md flex items-center bg-[#222] p-3">
                 <label htmlFor="file">upload image</label>
                 <input
@@ -135,13 +133,9 @@ const Page = () => {
                   onChange={(e) => setProfileImg(e.target.files[0])}
                 />
               </div>
-            </Form.Control>
             <div className="absolute -right-[95%] bottom-2 text-red-500">
-              <Form.Message match="valueMissing">
                 Please choose an image
-              </Form.Message>
             </div>
-          </Form.Field>
 
           <Form.Submit asChild>
             <button className="py-2 px-3 hover:bg-slate-800 cursor-pointer bg-slate-900 rounded-md mx-auto w-max capitalize">
