@@ -133,9 +133,7 @@ const Page = () => {
                   onChange={(e) => setProfileImg(e.target.files[0])}
                 />
               </div>
-            <div className="absolute -right-[95%] bottom-2 text-red-500">
-                Please choose an image
-            </div>
+            
 
           <Form.Submit asChild>
             <button className="py-2 px-3 hover:bg-slate-800 cursor-pointer bg-slate-900 rounded-md mx-auto w-max capitalize">
